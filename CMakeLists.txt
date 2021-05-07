@@ -36,6 +36,7 @@ add_executable(${PROJECT_NAME} ${LIBQATEMCONTROL} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Network)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES systemd/atem-shim@.service DESTINATION ${CMAKE_INSTALL_LIBDIR}/systemd/system/)
 
 ########################
 # package
