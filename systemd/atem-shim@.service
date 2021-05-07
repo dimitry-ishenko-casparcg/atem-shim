@@ -2,7 +2,7 @@
 Description=ATEM Shim on %I
 
 [Service]
-ExecStart=/usr/bin/atem-shim --atem-address %I
+ExecStart=/usr/bin/atem-shim %I
 Restart=always
 RestartSec=1
 

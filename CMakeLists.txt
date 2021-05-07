@@ -23,9 +23,9 @@ set(LIBQATEMCONTROL
     libqatemcontrol/qupstreamkeysettings.h
 )
 set(SOURCES
-    src/atem.cpp
     src/connection.cpp src/connection.hpp
-    src/server.cpp     src/server.hpp
+    src/main.cpp
+    src/server.cpp src/server.hpp
 )
 
 include(GNUInstallDirs)
