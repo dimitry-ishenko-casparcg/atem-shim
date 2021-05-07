@@ -43,7 +43,7 @@ install(FILES systemd/atem-shim@.service DESTINATION ${CMAKE_INSTALL_LIBDIR}/sys
 set(CPACK_STRIP_FILES ON)
 set(CPACK_GENERATOR DEB)
 
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "ATEM Shim for Crestron")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "ATEM Shim")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Dimitry Ishenko <dimitry (dot) ishenko (at) (gee) mail (dot) com>")
 
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
