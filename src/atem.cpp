@@ -1,3 +1,10 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2016-2021 Dimitry Ishenko
+// Contact: dimitry (dot) ishenko (at) (gee) mail (dot) com
+//
+// Distributed under the GNU GPL license. See the LICENSE.md file for details.
+
+////////////////////////////////////////////////////////////////////////////////
 #include "server.hpp"
 
 #include <QCoreApplication>
@@ -10,6 +17,7 @@
 #include <iostream>
 #include <stdexcept>
 
+////////////////////////////////////////////////////////////////////////////////
 bool contains(QStringList& args, const QString& arg, QString& value)
 {
     int index = args.indexOf(arg);
@@ -21,6 +29,7 @@ bool contains(QStringList& args, const QString& arg, QString& value)
     return true;
 }
 
+////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char* argv[])
 try
 {

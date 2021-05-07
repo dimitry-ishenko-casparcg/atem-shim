@@ -1,6 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2016-2021 Dimitry Ishenko
+// Contact: dimitry (dot) ishenko (at) (gee) mail (dot) com
+//
+// Distributed under the GNU GPL license. See the LICENSE.md file for details.
+
+////////////////////////////////////////////////////////////////////////////////
 #include "connection.hpp"
 #include <iostream>
 
+////////////////////////////////////////////////////////////////////////////////
 Connection::Connection(const QHostAddress& atem_address, QTcpSocket* socket, QObject* parent) :
     QObject(parent),
     atem_address_(atem_address),
@@ -18,11 +26,13 @@ Connection::Connection(const QHostAddress& atem_address, QTcpSocket* socket, QOb
     atem_connect();
 }
 
+////////////////////////////////////////////////////////////////////////////////
 Connection::~Connection()
 {
     std::cout << "Destroying Connection" << std::endl;
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::socket_read()
 {
     while(socket_->canReadLine())
@@ -56,6 +66,7 @@ void Connection::socket_read()
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::close()
 {
     std::cout << "Closing" << std::endl;
@@ -65,12 +76,14 @@ void Connection::close()
     atem_.disconnectFromSwitcher();
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::atem_connect()
 {
     std::cout << "Connecting to ATEM on " << atem_address_.toString().toStdString() << std::endl;
     atem_.connectToSwitcher(atem_address_);
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::atem_connected()
 {
     std::cout << "Connected to ATEM" << std::endl;
@@ -86,6 +99,7 @@ void Connection::atem_connected()
     socket_->write("cn\n");
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::atem_disconnected()
 {
     std::cout << "Disconnected from ATEM" << std::endl;
@@ -94,11 +108,13 @@ void Connection::atem_disconnected()
     socket_->write("dc\n");
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::program_changed(quint8, quint16, quint16 num)
 {
     socket_->write("pg=" + QByteArray::number(num) + '\n');
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Connection::preview_changed(quint8, quint16, quint16 num)
 {
     socket_->write("pv=" + QByteArray::number(num) + '\n');

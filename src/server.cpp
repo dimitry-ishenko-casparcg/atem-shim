@@ -1,3 +1,10 @@
+////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2016-2021 Dimitry Ishenko
+// Contact: dimitry (dot) ishenko (at) (gee) mail (dot) com
+//
+// Distributed under the GNU GPL license. See the LICENSE.md file for details.
+
+////////////////////////////////////////////////////////////////////////////////
 #include "connection.hpp"
 #include "server.hpp"
 
@@ -6,6 +13,7 @@
 #include <iostream>
 #include <stdexcept>
 
+////////////////////////////////////////////////////////////////////////////////
 Server::Server(const QHostAddress& atem_address, const QHostAddress& recv_address, quint16 recv_port, QObject* parent) :
     QObject(parent),
     atem_address_(atem_address)
@@ -20,11 +28,13 @@ Server::Server(const QHostAddress& atem_address, const QHostAddress& recv_addres
     if(!server_.isListening()) throw std::runtime_error("Failed to set up listen socket");
 }
 
+////////////////////////////////////////////////////////////////////////////////
 Server::~Server()
 {
     std::cout << "Destroying Server" << std::endl;
 }
 
+////////////////////////////////////////////////////////////////////////////////
 void Server::connection()
 {
     while(server_.hasPendingConnections())
