@@ -8,28 +8,32 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_definitions(-DVERSION="${PROJECT_VERSION}")
 
-find_package(Qt5 COMPONENTS Core Network REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Network REQUIRED)
+set(CMAKE_AUTOMOC ON)
 
-set(HEADERS ) # public headers, use SOURCES for private headers
+include_directories(libqatemcontrol)
+
+set(LIBQATEMCONTROL
+    libqatemcontrol/libqatemcontrol_global.h
+    libqatemcontrol/qatemcameracontrol.cpp libqatemcontrol/qatemcameracontrol.h
+    libqatemcontrol/qatemconnection.cpp    libqatemcontrol/qatemconnection.h
+    libqatemcontrol/qatemdownstreamkey.cpp libqatemcontrol/qatemdownstreamkey.h
+    libqatemcontrol/qatemmixeffect.cpp     libqatemcontrol/qatemmixeffect.h
+    libqatemcontrol/qatemtypes.h
+    libqatemcontrol/qupstreamkeysettings.h
+)
 set(SOURCES
     src/atem.cpp
     src/connection.cpp src/connection.hpp
-    src/server.cpp src/server.hpp
+    src/server.cpp     src/server.hpp
 )
-
-# sub-project(s)
-#option(BUILD_... "Build ..." ON)
-#if(BUILD_...)
-#    add_subdirectory(...)
-#    set_property(TARGET ... PROPERTY ...)
-#endif(BUILD_...)
 
 include(GNUInstallDirs)
 
 ########################
 # executable
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Network)
+add_executable(${PROJECT_NAME} ${LIBQATEMCONTROL} ${SOURCES})
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Network)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
