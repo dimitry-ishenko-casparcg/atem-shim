@@ -8,10 +8,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_definitions(-DVERSION="${PROJECT_VERSION}")
 
-#find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Network REQUIRED)
 
 set(HEADERS ) # public headers, use SOURCES for private headers
-set(SOURCES src/main.cpp)
+set(SOURCES
+    src/atem.cpp
+    src/connection.cpp src/connection.hpp
+    src/server.cpp src/server.hpp
+)
 
 # sub-project(s)
 #option(BUILD_... "Build ..." ON)
@@ -25,7 +29,7 @@ include(GNUInstallDirs)
 ########################
 # executable
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
-#target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Network)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
