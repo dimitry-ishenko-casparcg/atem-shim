@@ -15,8 +15,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 Server::Server(const QHostAddress& atem_address, const QHostAddress& recv_address, quint16 recv_port, QObject* parent) :
-    QObject(parent),
-    atem_address_(atem_address)
+    QObject{ parent }, atem_address_{ atem_address }
 {
     std::cout << "Creating Server" << std::endl;
 
@@ -44,7 +43,7 @@ void Server::connection()
         {
             std::cout << "Accepted connection from " << socket->peerAddress().toString().toStdString() << ':' << socket->peerPort() << std::endl;
 
-            auto connection = new Connection(atem_address_, socket, this);
+            auto connection = new Connection{ atem_address_, socket, this };
             connect(connection, &Connection::aboutToClose, connection, &Connection::deleteLater);
         }
     }

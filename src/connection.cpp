@@ -10,9 +10,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 Connection::Connection(const QHostAddress& atem_address, QTcpSocket* socket, QObject* parent) :
-    QObject(parent),
-    atem_address_(atem_address),
-    socket_(socket)
+    QObject{ parent }, atem_address_{ atem_address }, socket_{ socket }
 {
     std::cout << "Creating Connection" << std::endl;
 
